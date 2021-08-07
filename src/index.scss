@@ -1,0 +1,59 @@
+body {
+    background: azure;
+}
+.home {
+    height: calc(100vh);
+}
+
+.float-right {
+    float: right;
+}
+
+.spHeight {
+    position: absolute;
+    width: 66.6667%;
+}
+
+.text-right {text-align: right;}
+
+.imgPro {
+    max-width: 50px;
+    border-radius: 100% !important;
+    border: 1px solid rgba(102, 77, 3, .2);
+    margin-right: 10px;
+}
+.imgLeft {
+    float: left;
+    margin-right: 0px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+ 
+.fixheight {
+    max-height: 140px;
+}
+
+h4 {font-size: 1rem;}
+h4 span{font-size: .7rem;}
+h6 {font-size: .5rem;}
+p {font-size: .8rem;}
+
+.bg-success,
+.btn-success {
+    color: #fff;
+    background-color: #a29a80 !important;
+    border-color: #a29a80;
+}
+
+.searchBox:focus,
+.searchBox {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 1px solid brown;
+    width: 100%;
+    background: transparent;
+    font-size: 12px;
+    padding: 10px;
+    outline: none;
+}
