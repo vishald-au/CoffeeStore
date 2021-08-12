@@ -1,10 +1,11 @@
 import Product from "./Product";
 import data from "./data";
-import { useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 
 function App() {
 
+  const searchFocus = useRef();
   const [cartItems, setCartItems] = useState([])
   const [search, setSearch] = useState('')
 
@@ -35,27 +36,34 @@ function App() {
     }
   }
 
-  const totalCart = cartItems.reduce((a, b) => a + b.qty * b.price, 0)
+  const totalCart = Math.round(cartItems.reduce((a, b) => a + b.qty * b.price, 0))
   const totalTax = Math.round(totalCart * 0.15)
   const totalShipping = totalCart > 1000 ? 0 : 50
+
+  useEffect(() => {
+    searchFocus.current.focus()
+  }, [])
 
 
   return (
     <div className='container-fluid '>
       <div className='row'>
 
-        <div className='col-8 home'>
+        <div className='col-sm-12 col-md-8 col-lg-9 home'>
           <div className='row'>
 
             <div className='col-12'>
-              <input className='searchBox' placeholder='Search...' onChange={(e) => setSearch(e.target.value)} />
+              <input ref={searchFocus} className='searchBox' placeholder='Search...' onChange={(e) => setSearch(e.target.value)} />
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search searchIcon" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg>
             </div>
           </div>
           <div className='row p-4'>
             <div className='col-12'>
               <div className='row'>
                 {handleSearch(data).map(item => (
-                  <div className='col-4 p-4'>
+                  <div className='col-sm-12 col-md-12 col-lg-4 p-4'>
                     <Product key={item.id} item={item} addToCart={addToCart} />
                   </div>
                 ))}
@@ -63,31 +71,51 @@ function App() {
             </div>
           </div>
         </div>
-        <div className='col-4 bg-success text-light home'>
+        <div className='col-sm-12 col-md-4 col-lg-3 p-2 bg-success text-light home sidebar'>
           <div className='row'>
-            <div className='col-9'>Cart ({cartItems.length})</div>
-            <div className='col-3'></div>
+            <div className='col-6'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+</svg> ({cartItems.length})</div>
+            <div className='col-6 floatRightTotal'>Pay ${Math.round(totalCart + totalShipping + totalTax)}</div>
             <hr />
           </div>
-          <div className='row'>
-            {cartItems.length === 0 && 'cart is empty'}
+          <div className='row p-3'>
+            {cartItems.length === 0 && 'Cart is empty'}
             {cartItems.map(item => (
               <div key={item.id} className='card bg-dark p-2' >
                 <div className='row g-0'>
+                  
+                  
+                  
                   <div className='col-md-12'>
-                    <img src={item.img} className='imgPro imgLeft' alt={item.title} />
+                    <img src={item.img} className='imgPro2 imgLeft' alt={item.title} />
 
                     <div className='card-body'>
-                      <p className='card-text'>
-                        <small>Price: ${item.price}</small><br />
-                        <small>Qty: {item.qty}</small><br />
+                      <div className='row p-0'>
+                        <div className='col-sm-12 col-md-6  p-0'>
+                          <p className='card-text'>
+                          <small>Price: ${item.price}</small><br />
+                          <small>Qty: {item.qty}</small><br />
 
-                        <button className='btn btn-light m-1 btn-sm' onClick={() => addToCart(item)}>+</button>
-                        <button className='btn btn-light btn-sm' onClick={() => removeCart(item)}>-</button>
-                      </p>
+                         
+                        </p>
+                        </div>
+                        <div className='col-sm-12 col-md-6  p-0'>
+                        <p className='card-text'>
+                   
+
+                          <button className='btn btn-light m-1 btn-sm btnBig' onClick={() => addToCart(item)}>+</button>
+                          <button className='btn btn-light btn-sm btnBig' onClick={() => removeCart(item)}>-</button>
+                        </p>
+                        </div>
+                      </div>
+                      
 
                     </div>
                   </div>
+
+
+
                 </div>
               </div>
             ))}
@@ -99,10 +127,10 @@ function App() {
             <div className='col-12 py-3'>
               <p className='text-right'>
                 <small>Total Amount: ${totalCart}<br />
-                  Shipping:  ${totalShipping}<br />
+                  Shipping:  ${cartItems.length && totalShipping}<br />
                   Tax (15%):  ${totalTax}<br /></small>
                 <hr />
-                Grand Total ${totalCart + totalShipping + totalTax}<br />
+                <span>Grand Total ${Math.round(totalCart + totalShipping + totalTax)}</span><br />
 
                 <button className='btn btn-light'>PAY</button>
               </p>
