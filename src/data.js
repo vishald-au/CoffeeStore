@@ -21,35 +21,35 @@ const data = [
         id: 2,
         img: img2,
         title: 'AMERICANO',
-        price: 4.99,
+        price: 5.99,
         desc: 'Espresso with added hot water. Often served in a cappuccino cup.'
     },
     {
         id: 3,
         img: img3,
         title: 'CAFFÈ LATTE',
-        price: 4.99,
+        price: 6.99,
         desc: 'A tall, mild milk coffee. An espresso with steamed milk and only a little milk foam poured over it.'
     },
     {
         id: 4,
         img: img4,
         title: 'CAFFÈ MOCHA',
-        price: 4.99,
+        price: 7.99,
         desc: 'A caffè latte with chocolate and whipped cream, with an espresso shot and steamed milk.'
     },
     {
         id: 5,
         img: img5,
-        title: 'Caffe_Latte.jpeg',
-        price: 4.99,
+        title: 'CAFFE LATTE',
+        price: 6.99,
         desc: 'French morning coffee. Made by mixing dark roasted filter coffee and warm milk.'
     },
     {
         id: 6,
         img: img6,
         title: 'CAPPUCCINO',
-        price: 4.99,
+        price: 5.99,
         desc: 'A coffee drink consisting of espresso and a milk foam mixture.'
     },
     {
@@ -63,14 +63,14 @@ const data = [
         id: 8,
         img: img8,
         title: 'DOUBLE ESPRESSO',
-        price: 4.99,
+        price: 7.99,
         desc: 'Double portion of espresso in a cappuccino cup.'
     },
     {
         id: 9,
         img: img9,
         title: 'ESPRESSO',
-        price: 4.99,
+        price: 3.99,
         desc: 'A short, strong drink served in an espresso cup.'
     },
     {

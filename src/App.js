@@ -36,6 +36,10 @@ function App() {
     }
   }
 
+  const clearCart = () => {
+    setCartItems([])
+  }
+
   const totalCart = Math.round(cartItems.reduce((a, b) => a + b.qty * b.price, 0))
   const totalTax = Math.round(totalCart * 0.15)
   const totalShipping = totalCart > 1000 ? 0 : 50
@@ -76,7 +80,7 @@ function App() {
             <div className='col-6'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
   <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
 </svg> ({cartItems.length})</div>
-            <div className='col-6 floatRightTotal'>Pay ${Math.round(totalCart + totalShipping + totalTax)}</div>
+            <div className='col-6 floatRightTotal'>Due ${Math.round(totalCart + totalShipping + totalTax)}</div>
             <hr />
           </div>
           <div className='row p-3'>
@@ -126,13 +130,13 @@ function App() {
             <hr />
             <div className='col-12 py-3'>
               <p className='text-right'>
-                <small>Total Amount: ${totalCart}<br />
+                <small>Total: ${totalCart}<br />
                   Shipping:  ${cartItems.length && totalShipping}<br />
                   Tax (15%):  ${totalTax}<br /></small>
                 <hr />
                 <span>Grand Total ${Math.round(totalCart + totalShipping + totalTax)}</span><br />
 
-                <button className='btn btn-light'>PAY</button>
+                <button onClick={() => clearCart()} className='btn btn-light'>RESET</button>
               </p>
             </div>
 

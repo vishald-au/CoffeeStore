@@ -10,14 +10,14 @@ const Product = (props, addCart) => {
             
             </div>
             <div className='col-8'>
-                <h4>{item.title} <span className='textRight'>${item.price}</span></h4>
+                <h4>{item.title}</h4>
                 <h6>{item.desc}</h6>
 
     
                 
             </div>
             <div className='col-2 p-0'>
-            <button className='btn btn-success btn-sm btnFull' onClick={() => addToCart(item)}>+</button>
+            <button className='btn btn-success btn-sm btnFull' onClick={() => addToCart(item)}>${item.price}</button>
                 </div>
         </div>
     )
